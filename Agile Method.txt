@@ -25,10 +25,11 @@ Scrum Frmk:
 ->describes a set of meetings, tools and roles that work in concert
 to help teams structure and manage their work.
 
-Scrum Roles:
-*Developers(Team)
-*Product owner
-*Scrum Master
+Scrum Roles:			Agile ceremonies:
+*Developers(Team)		* Sprint Plan meeting
+*Product owner			* Daily Standupcall
+*Scrum Master			* Sprint review
+				* Sprint Retrospective
 
 1) a person(Customer) who have idea of developing a software but dont have 
 knowledge to develop approaches a S/w company to develop it.
@@ -66,8 +67,8 @@ obtained. The product which can be used individually to run it is
 the shippable product. This is should be the end result of every Sprint
 
 9)"Sprint review Meeting" - review meeting is done on the shippable product
-			    as per customer requirement.
-			    Like, done or not done?
+			    as per customer requirement.to inspect the outcome
+			    of sprint. Like, done or not done?
 
 10)"Sprint retrospective meeting" - review meeting is done to the Whole
 				     team whether they did work as needed.
