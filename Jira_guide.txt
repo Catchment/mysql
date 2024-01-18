@@ -1,0 +1,40 @@
+JIRA:
+
+1)Epic - In Agile, epic is a greater functionality which can be subdivided into 
+	 further granular units(scenario's) to be actually implemented.
+
+2)Story - user stories(from end user perspective) help proudct managers clearly 
+	  define software req so the dev team understands the desired outcome
+	  of the new functionality.
+	  A good story captures the who, what and why of a feature in simple way.
+
+	eg Template:
+		As a [type of user]			- "who"
+		I want to [ perform some taks]		- "what"
+		so that I can [achieve some goal]	- "why"
+
+3)Acceptance criteria - determines the completion of the task by having BDD style
+			feature description.
+			->it should have the precondition 	- Given
+			->action to be performed		- When
+			->consequence of the action		- Then
+	eg Template:
+		Given that [some context]
+		When [perform some task]
+		Then [achieve some goal]
+
+		Given that Youtuber has internet
+		When someone comments on a video
+		Then youtuber should see a notification for the comment
+
+4)Product backlog - well defined requirements/stories created by product owner
+
+5)Sprint backglog - well defined requirements/stories which DEV committed to deliver
+		    in a sprint. Derived from the product backlog after spring plan
+
+6)Story points - indicates the "effort"(not timeperiod) required to put a 
+		 product backlog item live
+
+7)Mockup	- it is a visual representation of how the product will be. 
+		- a pictorial representation - gives some idea about the what type of
+					       product it is
