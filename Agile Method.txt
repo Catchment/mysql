@@ -85,3 +85,77 @@ it will break scrum rules.
 
 13)this sprint backlog will then be added to Product Backlog and then moved to 
 spring backlog before the starting another sprint.  
+
+
+
+Scrum Roles and Responsibilites:
+
+1)Product owner:
+->provides the vision of the product to the team
+->maintains the product backlog
+->prioritize the backlog items to achieve the best
+->explaining the backlog in a clear manner to the
+team to help the team to make better decisions.
+
+2)Team:
+-> taking the task from product backlog and make a potentail shippable item
+-> self organised (what to commit and how to commit) decided by the team not
+by the product owner.
+->cross functional(analysis, dev, test, DB) and Structured team.
+even if some team members are absent like, dev and DB remaining members
+should compensate for their work(even they should perform the role of dev and DB)
+because the sprint is just a 2 week process.
+-> team is accountable as a whole( no blame game)
+-> usually 7 to 10 persons
+
+3)Scrum Master : (Agile, scrum coach)
+->helps team to adopt scrum
+->helps team how to be self organised
+->protects the team from outside interference
+->conducts scrum events
+->eliminates obstrcution for the progress of the team
+->Scrum Master is not and should not be the product owner/Manager
+
+
+Scrum ceremonies (Events);
+
+1)Sprint Planning - ~2hrs - Team, Scrum Master, Product owner
+ 		  - occurs before the start of the sprint
+purpose:
+->discuss each item on the backlog and prioritize the backlog and the entire
+team collectively estimates the effort involved.
+->dev team will make a forecast on how much work can be done on that 
+sprint considering several factors and risks.
+->the shortlisted list of backglog becomes sprint backlog
+
+2)Daily Standup - ~15min - Team, Scrum Master, Product owner - occurs daily
+		- conducted by scrum master
+
+Note: 	presence of product owner is high in productbased comp.
+	and very less in service based.
+	Even Scrum master might not be a dedicated person for standup call
+	someone like TL will act as scrum master
+	
+-> to quickly inform everyone(team) on whats going on across the team.
+-> it is not a detailed one. It should be short and to the point
+-> the following questions are answered by the team
+		1)what did i complete yesterday?
+		2)what will i work on today?
+		3) am i blocked by anything?
+
+3)Sprint review / Iteration review - ~30min-1hr - Team, SM, PO
+				   - at the end of each sprint about the product
+
+->review about, how good the end product delivered by the team is, and its feedback
+->the team will showcase(demo) the work they did
+->this event is to celebrate the completion of iteration and get feedback
+->happens on friday and is more like a fun meeting rather than formal
+
+4)Sprint Retrospective Meeting - ~1hr - Team, SM, PO
+			       - at the end of each sprint about the team
+->help the team understand "want went well" & "what didnt" for the team.
+->rather complaining, team will keep doing things which are under
+"what went well" category and will try to find creative solutions for things
+that didnt go well.
+->continuously getting adopted and learning is the CORE ESSENCE of Agile and 
+retrospective is the KEY place for that
