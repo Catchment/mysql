@@ -1,0 +1,82 @@
+AGILE Methodology: 
+-> In short, adopting to situations through Iterative approach.
+			          (step by step process)
+-> Req, plans and results are evaluated continuously so teams
+have a natural mechanism for responding to change quickly.
+
+Agile Manifesto:
+
+* Individual and Interactions over process and tools
+* Working Software over comprehensive doc
+* Customer collaboration over contract negotiation
+* Responding to change over following a plan
+
+eg) That is, while there is value in the items on the right,
+	     we value the items on the left more.
+
+Frameworks in Agile:
+1)Scrum Framework
+2)KANBAN
+3)eXtreme Programming
+4)Scaled Agile Frmk(SAFe)
+
+Scrum Frmk:
+->frmk for develping and sustaining complex products
+->describes a set of meetings, tools and roles that work in concert
+to help teams structure and manage their work.
+
+Scrum Roles:
+*Developers(Team)
+*Product owner
+*Scrum Master
+
+1) a person(Customer) who have idea of developing a software but dont have 
+knowledge to develop approaches a S/w company to develop it.
+
+2) he/she meets up with person who have common interest(vision) and 
+accepts to develop the software after certain months, 
+who later will called as *"Product Owner"*
+
+3) Product Owner takes the Requirements and create a Document called 
+   "LOG". Note: after the sprints starts it is called backglog. 
+    When this log is present with Product owner it is called 
+    "Product backglog."
+
+4) Product owner forms a Team(developers, testers, etc) and create a 
+"Sprint plan". The requirements for the sprint plan is discussed in
+"Sprint plan Meeting". usually one sprint will always be 2-4weeks, mostly
+2 weeks.
+
+5)Each sprint(2 weeks) requiremetns (tasks) will be logged as 
+"Spring Backlog".
+
+6) While the sprint process is going on, every day All Team members should
+attend a meeting called "Standup meeting" or "Scrum call" for the 
+entire sprint. all have to inform their work status like
+			-> what i did yesterday?
+			-> What am i doing today?
+			-> is there any blocker for my work today?	
+
+7) This standup meeting will be conducted by "Scrum master"(like a coach).
+Scrum master don't need to be a technical expert but knows well about the 
+Agile - Scrum principles and advice every team member to follow them strictly.
+
+8) After 2 weeks(usuall sprint), a potentially shippable product will be
+obtained. The product which can be used individually to run it is 
+the shippable product. This is should be the end result of every Sprint
+
+9)"Sprint review Meeting" - review meeting is done on the shippable product
+			    as per customer requirement.
+			    Like, done or not done?
+
+10)"Sprint retrospective meeting" - review meeting is done to the Whole
+				     team whether they did work as needed.
+				     How better they can be done, like using
+				     diff techs?
+
+11) If the requirements from "sprint backlog" are not met within the particular 
+sprint, the timeline for that particular sprint should not be extended as 
+it will break scrum rules.
+
+12)this sprint backlog will then be added to Product Backlog and then moved to 
+spring backlog before the starting another sprint.  
