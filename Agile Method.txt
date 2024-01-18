@@ -25,7 +25,7 @@ Scrum Frmk:
 ->describes a set of meetings, tools and roles that work in concert
 to help teams structure and manage their work.
 
-Scrum Roles:			Agile ceremonies:
+Scrum Roles:			Scrum ceremonies:
 *Developers(Team)		* Sprint Plan meeting
 *Product owner			* Daily Standupcall
 *Scrum Master			* Sprint review
