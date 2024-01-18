@@ -70,14 +70,18 @@ the shippable product. This is should be the end result of every Sprint
 			    as per customer requirement.to inspect the outcome
 			    of sprint. Like, done or not done?
 
-10)"Sprint retrospective meeting" - review meeting is done to the Whole
+10)Increment - A sum of usable sprint backlog items completed by the Developers
+	       in the sprint that meets the definition of done, plus the value
+	       of all the increments that came before.
+
+11)"Sprint retrospective meeting" - review meeting is done to the Whole
 				     team whether they did work as needed.
 				     How better they can be done, like using
 				     diff techs?
 
-11) If the requirements from "sprint backlog" are not met within the particular 
+12) If the requirements from "sprint backlog" are not met within the particular 
 sprint, the timeline for that particular sprint should not be extended as 
 it will break scrum rules.
 
-12)this sprint backlog will then be added to Product Backlog and then moved to 
+13)this sprint backlog will then be added to Product Backlog and then moved to 
 spring backlog before the starting another sprint.  
