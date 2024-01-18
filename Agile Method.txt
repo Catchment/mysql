@@ -98,7 +98,7 @@ Scrum Roles and Responsibilites:
 team to help the team to make better decisions.
 
 2)Team:
--> taking the task from product backlog and make a potentail shippable item
+-> taking the task from product backlog and make a potential shippable item
 -> self organised (what to commit and how to commit) decided by the team not
 by the product owner.
 ->cross functional(analysis, dev, test, DB) and Structured team.
@@ -120,7 +120,7 @@ because the sprint is just a 2 week process.
 Scrum ceremonies (Events);
 
 1)Sprint Planning - ~2hrs - Team, Scrum Master, Product owner
- 		  - occurs before the start of the sprint
+ 		  - occurs before the start of the sprint conducted by PO
 purpose:
 ->discuss each item on the backlog and prioritize the backlog and the entire
 team collectively estimates the effort involved.
@@ -158,4 +158,57 @@ Note: 	presence of product owner is high in productbased comp.
 "what went well" category and will try to find creative solutions for things
 that didnt go well.
 ->continuously getting adopted and learning is the CORE ESSENCE of Agile and 
-retrospective is the KEY place for that
+retrospective is the KEY place for that.
+
+Scrum Artifacts:
+
+->work or value created by the scrum participants, which is transparent and helps
+team to inspect and adapt.
+-> details the product being developed, actions needed to produce the product and
+actions performed during the project.
+
+1)Product backglog:
+->product owner explains the vision of the project during the initial stage and this
+evolves into a well defined set of requiremets for the product
+
+->it is not a static backlog, it is updated on a continuous manner by the PO or 
+any improvement in project given by dev team to accomodate the change in the 
+customer end or to reflect changes due to risks, issues. it continuously evolve 
+along with the team
+
+2)Sprint backglog: (after sprint planning)
+-> set of tasks from product backglog. the team will work on these backlog to create
+the increment(first version individual/potential shippable product)
+-> created by picking up some tasks on the product backlog and breaking them into
+several actionable sprint items.
+
+3)Increment:(result of one sprint)
+->end product of the sprint by completing spring backlog tasks.
+->every sprint must produce potentially shippable product.
+
+additional artifacts - this is not officially inside the scrum but additional benefits
+4)Definiton of done - after the increment is completed, it is used to verify the 
+		      increment is finished or unfinished with set of questions.
+		      only if the questions are answered as Y or N the spring becomes
+		      successfull. it should not be 90% or 85% completed status
+		      It should always be in 100% completed status for Yes else 
+		      the sprint is not completed.
+
+5)Burned down chart - A Graph show the completion of the sprint - In JIRA
+
+
+Scrum Values:
+
+1)Courage - courage to do the right thing and work on touch problems 
+
+2)Focus   - focus on the work of sprint and goals of scrum team - 
+	  - one sprint at a time with full effort.
+
+3)Commitment  - commit to achieving the goals of the scrum team
+
+4)Respect     - respect each other to be capable, independent people
+
+5)Openness/   - the scrum team and its stakeholders agree to be open about all the
+  Transparent   work and the challanges with performing the work
+
+
