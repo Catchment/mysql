@@ -1,0 +1,44 @@
+Benefits of spring boot over spring
+
+1)Dependency resolution:
+->in spring frmk, first we need to find what are the dependencies we need to add to
+integrate spring and hibernate and list down all the dependencies based on the same
+version. if spring is ver.3 and hibernate is v.5 there may be dependency conflict.
+its the same rule for all the dependencies we add in spring frmk
+
+->just by adding the spring starter web, spring data jpa alone is enough to work with
+spring MVC.it is backward compatible. we dont need to worry about the version
+
+2)Minimum configuration:
+-> in spring frmk, we need to enable datasource, sessionfactory, transaction and
+mention bean to scan like component scan everything we need to configure in file.
+it is a burdon for the developer to remember this much configuration for large appln.
+
+-> but in sprint boot, those configurations are not required only add few 
+configuration in properties.file.it will enable all the config
+
+
+3)Embedded server for testing:
+->for spring frmk, we have to run the appln in server(we configured) 
+everytime even for testing
+
+->but in spring boot, we can run the appln in embedded Tomcat server provided by the
+frmk itself
+
+4)Bean autoscan:
+->in spring manually we need to enable the componenet scan in springRest-servlet.xml file
+like component scan base package = "com.spring.rest.crud" then IOC container will 
+scan all the beans
+
+-> but in spring boot,we can enable the component scan by adding @component scan
+annotation. since it is already available within the @SpringBootApplication we dont 
+need to use is separately.
+Note: the controller class should be within the samepackage strcuture as main class
+to automatically enable @Component scan else IOC will unable to scan it. so it is 
+a best practive to main the other class within the base(same) package.
+
+5)Health Metrics:
+->in spring frmk, we need to add the customized frmk or third party to monitor 
+the appln health
+->but in spring boot, we have concept called Actuator to monitor the health metrics
+of the appln.

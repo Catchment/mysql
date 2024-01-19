@@ -1,4 +1,4 @@
-JIRA:
+JIRA: lets us prioritize, assign, track, report and audit 'issues' 
 
 1)Epic - In Agile, epic is a greater functionality which can be subdivided into 
 	 further granular units(scenario's) to be actually implemented.

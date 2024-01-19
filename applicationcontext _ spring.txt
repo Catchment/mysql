@@ -1,0 +1,155 @@
+
+
+This question already has answers here:
+application context. What is this? (4 answers)
+What is Application context and bean factory in spring framework [duplicate] 
+
+I have a Spring Boot app and it's running with Spring Data, MySQL, Spring Security and MVC. The app is running for me just as fine.
+
+However, I keep hearing about ApplicationContext a lot and I was wondering when do I need to use it and would like to know what it does. 
+Can someone give me an example and an overview of ApplicationContext and its use?
+
+Answers:
+
+ApplicationContext is a core interface that Spring framework built on. 
+If you're building a Spring application, you're already using the ApplicationContext. 
+You can have great insight about this from Spring Framework Reference Documentation. 
+As per this document, Spring framework consists with these modules;
+
+Overview of the Spring Framework
+
+The Context (spring-context) module builds on the solid base provided by the Core and Beans modules: 
+it is a means to access objects in a framework-style manner that is similar to a JNDI registry. 
+The Context module inherits its features from the Beans module and adds support for internationalization 
+(using, for example, resource bundles), event propagation, resource loading, and the transparent creation 
+of contexts by, for example, a Servlet container. The Context module also supports Java EE features such as 
+EJB, JMX, and basic remoting. The ApplicationContext interface is the focal point of the Context module. 
+spring-context-support provides support for integrating common third-party libraries into a 
+Spring application context, in particular for caching (EhCache, JCache) and scheduling (CommonJ, Quartz).
+
+Spring ApplicationContext also inherits BeanFactory super-interface. 
+So technically ApplicationContext is capable of doing all the things, BeanFactory interface is 
+capable and much more. BeanFactory interface along with ApplicationContext provide the backbone 
+of the Spring IoC container (Core container). Which is Bean management for your application.
+
+The interface org.springframework.context.ApplicationContext represents the Spring IoC container 
+and is responsible for instantiating, configuring, and assembling the aforementioned beans. 
+The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code. It allows you to express the objects that compose your application and the rich interdependencies between such objects.
+
+ApplicationContext uses eager loading mechanism. So, every bean declared in your application, 
+is initialized right away after the application started and after, 
+this ApplicationContext scope is pretty much read-only.
+
+Initiate a Spring IoC container with custom bean definitions is pretty much staright forward.
+
+ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"daos.xml"});
+Following file shows this daos.xml file content;
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountDao"
+        class="org.springframework.samples.jpetstore.dao.jpa.JpaAccountDao">
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="itemDao" class="org.springframework.samples.jpetstore.dao.jpa.JpaItemDao">
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+    <!-- more bean definitions for data access objects go here -->
+</beans>
+After that you can access the beans define in the .xml like this;
+
+JpaItemDao obj = (JpaItemDao) factory.getBean("itemDao");
+These instances are now being initialized and managed by the ApplicationContext. But most users prefer to use @Bean annotation define beans to do the binding and @Autowired annotation to do the dependency injection. So, no need to manually feed a bean .xml to custom initialized ApplicationContext.
+
+@Configuration
+class SampleConfig {
+
+    @Bean
+    public JpaItemDao getJpaItemDao() {
+        return new JpaItemDao();
+    }
+}
+and inject in;
+
+@Component
+class SampleComponent {
+
+    @Autowired
+    private JpaItemDao itemDao;
+
+    public void doSomething() {
+        itemDao.save(); // Just an example.
+    }
+}
+Besided the bean management, ApplicationContext does some other important thing in the Spring core container. 
+As per ApplicationContect javadoc, they are;
+
+Bean factory methods for accessing application components. Inherited from ListableBeanFactory.
+The ability to load file resources in a generic fashion. Inherited from the ResourceLoader interface.
+The ability to publish events to registered listeners. Inherited from the ApplicationEventPublisher interface.
+The ability to resolve messages, supporting internationalization. Inherited from the MessageSource interface.
+Inheritance from a parent context. Definitions in a descendant context will always take priority. This means, for example, that a single parent context can be used by an entire web application, while each servlet has its own child context that is independent of that of any other servlet.
+Also, checkout the sub-interfaces of ApplicationContext that specifically designed for work on different use cases like WebApplicationContext.
+
+
+Answer:
+
+ApplicationContext is a core concept (arguably the most important one) of spring used also in spring boot of course but and ideally hidden from the programmers in both cases, meaning that the programmer should not directly interact with it in a business code of the application.
+
+Technically its an interface that has many implementations, the relevant one is picked depending on in which environment you're running and how do you configure the application.
+
+So does it do? Its a class that basically is a registry of all the beans that spring has loaded. In general, starting up the spring mean finding the beans to load and putting them in the application context (this is relevant for singletons only, prototype-scopes beans are not stored in the ApplicationContext).
+
+Why does spring need it? For many reasons, to name a few:
+
+To manage lifecyle of the beans (when the application shuts down, all beans that have a destroy method should be called)
+
+To execute a proper injection. When some class A depends on class B spring should inject class B into class A. So by the time of creating the class A, class B should already be created, right? So spring goes like this:
+
+Creates B
+Puts B into application context (registry)
+Creates A
+For injection goals: gets B from the application context and injects into A
+// an illustration for the second bullet
+class B {}
+
+class A {
+  @Autowired 
+  B b;
+}
+Now there are other things implemented technically in application context:
+
+Events
+Resource Loading
+Inheritance of application contexts (advanced stuff, actually)
+However now you have an overview of what it is.
+
+Spring boot application encapsulates the application context but you can still access it from many places:
+
+in the main method when the application starts it returns an application context]
+you can inject it into configuration if you really need
+its also possible to inject the application context into the business bean, although we shouldn't really do so.
+
+
+---------In simple words:-------------------
+
+Spring is popular for dependency Injection. So all the bean definitions(Objects) will be created by the spring and maintained in the container. So all the bean life cycle will be taken care by spring container.
+
+So ApplicationContext is a interface It has different implementations will be there to initialize the spring container. So ApplicationContext is the reference to Spring Container.
+
+Some popular implementations are:
+
+AnnotationConfigWebApplicationContext,
+
+ClassPathXmlApplicationContext,
+
+FileSystemXmlApplicationContext,
+
+XmlWebApplicationContext.
+
+Reference: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html
