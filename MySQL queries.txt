@@ -1,0 +1,307 @@
+181
+
+SET SQL SAFE UPDATES query
+
+No need to set SQL_SAFE_UPDATES to 0, I would really discourage it to do it that way. SAFE_UPDATES is by default on for a REASON. You can drive a car without safety belts and other things if you know what I mean ;) Just add in the WHERE clause a KEY-value that matches everything like a primary-key comparing to 0, so instead of writing:
+
+UPDATE customers SET countryCode = 'USA'
+    WHERE country = 'USA';               -- which gives the error, you just write:
+
+UPDATE customers SET countryCode = 'USA'
+    WHERE (country = 'USA' AND customerNumber <> 0); -- Because customerNumber is a primary key you got no error 1175 any more.
+
+---------------------------
+---------------------------
+
+show databases;
+create database employee;
+use employee;
+create table Orders(orderid long, customerid varchar(30), orderdate varchar(30));
+
+insert into Orders(orderid, customerid, orderdate) values( 10308, 2, '2024-01-25');
+insert into Orders(orderid, customerid, orderdate) values( 10309, 3, '2024-01-24');
+insert into Orders(orderid, customerid, orderdate) values( 10307, 4, '2024-01-26');
+insert into Orders(orderid, customerid, orderdate) values( 10306, 5, '2024-01-23');
+insert into Orders(orderid, customerid, orderdate) values( 10305, 6, '2024-01-22');
+insert into Orders(orderid, customerid, orderdate) values( 10304, 7, '2024-01-21');
+
+
+select * from Orders;
+create table Customers(customerid long, customername varchar(30), contactname varchar(30), country varchar(30));
+insert into customers(customerid, customername, contactname, country, customerjd) values(2, 'Benny', 'Roger', 'uk','trainee');
+insert into customers(customerid, customername, contactname, country) values(3, 'Arun', 'Lakshman', 'india');
+insert into customers(customerid, customername, contactname, country) values(4, 'Vijay', 'Hazare', 'india');
+insert into customers(customerid, customername, contactname, country) values(1, 'Steve', 'jobs', 'usa');
+insert into customers(customerid, customername, contactname, country) values(5, 'Naruto', 'Uzumaki', 'japan');
+insert into customers(customerid, customername, contactname, country) values(6, 'jackie', 'chan', 'china');
+
+insert into customers(customerid, customername, contactname, country) values(7, 'Ben', 'Tennyson', 'Australia');
+insert into customers(customerid, customername, contactname, country) values(8, 'Mike', 'Tyson', 'usa');
+insert into customers(customerid, customername, contactname, country) values(9, 'Fidel', 'Castro', 'cuba');
+insert into customers(customerid, customername, contactname, country) values(10, 'Adolf', 'Hitler', 'German');
+insert into customers(customerid, customername, contactname, country) values(11, 'Subhashchandra', 'Bose', 'india');
+insert into customers(customerid, customername, contactname, country) values(12, 'Lincoln', 'Abhraham', 'usa');
+insert into customers(customerid, customername, contactname, country) values(13, 'Bruce', 'Lee', 'china');
+
+create table Shipping(location varchar(30), customerid varchar(30), shippername varchar(30));
+insert into shipping values('alabama', '2' , 'Tennyson');
+insert into shipping values('chennai', '3' , 'Arun');
+insert into shipping values('Berlin', '4' , 'Hitler');
+
+describe customers;
+alter table customers add customerjd varchar(30); -- we can also use "add column"
+alter table customers add customerjd varchar(30) not null;
+alter table customers add customersalary long not null;
+
+------------- alter the table propery--setting it to primary key--before that set the column as not null
+alter table customers modify customerid long not null;
+alter table customers add primary key (customerid(30));
+alter table customers add unique(customerid (30));
+
+delete from customers where customerjd='trainee';
+insert into customers(customerjd) values('analyst');
+update customers set customersalary=245000 where customerid=1;
+update customers set customerjd='trainee' where customerid=1;
+
+------ to update column value ------
+update customers set customerjd='analyst', customersalary=300000 where customerid=3;
+alter table customers drop customerjd;
+
+update customers set country='uae' where customerid=14 and customerjd='analyst';
+update customers set customerid=6 where customerid=2 and customername='jackie';
+
+delete from customers where customerjd='trainee' and customerid=2;
+
+
+delete customerjd from customers;
+select * from customers;
+
+------ LIKE-------- if i% ->indicates country starts with i, %a->indicates the country ends with a;
+select * from customers where country like 'i%a';
+select * from customers where country like '%nd%';
+select * from customers where country like '_s%'; -- ->finds the value where country having s in second positiion
+select * from customers where country like 'a_%'; -- ->finds the value where country starts with a and have  
+												  --   2 characters in length
+select * from customers where country like 'i__%'; -- ->finds the value where country starts with a and have 
+												  --     3 characters in length
+select * from customers where country like 'i_%_%'; -- ->finds the value where country starts with a and have 
+												  --     atleast 3 characters in length
+select * from customers where country not like 'i%'; -- ->avoid the country that starts with i
+
+------ BETWEEN------------
+select * from customers where customerid between 1 and 3;
+select * from customers where customerid not between 1 and 2;
+select * from customers where customerid between 1 and 5 and customerid in (1,2,3); 
+select * from customers where country between 'india' and 'usa' order by country;
+select * from customers where country between 'uk' and 'usa' order by country;
+select * from customers where country not between 'uk' and 'usa' order by country;
+select * from orders where orderdate between '22-01-2024' and '25-01-2024';
+------ IN ------------
+select * from customers where country in ('india', 'usa'); -- ->populates country value from india & usa
+------ based on customerid present in orders table it filters the customerid from customers table----- 
+select * from customers where customerid not in (select customerid from orders);
+
+select * from customers where country ='india' and contactname = 'lakshman';
+select * from customers where customername='arun' or customername='adolf';
+select * from customers where not country='germany';
+
+select * from customers where country='china' and (contactname='jobs' or contactname='chan');
+select * from customers where country='china' and not contactname='chan';
+
+-------- ORDER BY ----------GROUP BY and ORDER BY should always have same param
+select * from customers order by customerid asc;
+select * from customers order by customerid desc;
+
+----- it sort by country, but if some column have same country it orders by contactname
+select * from customers order by country, contactname;
+
+----- it sort the country in asc and contactname in desc-- it wont take more than 2 value..
+----- there is no meaning in giving 3rd param
+select * from customers order by country asc, contactname desc;
+
+------ null-------
+select * from customers where customerid is null; -- -> shows the column which has null value(empty values)
+select * from customers where customerid is not null; -- -> show the column which doesnt have null value(non empty values)
+
+--------- update-------- whatever update we give after "set" it will be updated based on where param
+update customers set customername='steve', country='uk' where customerid=2;
+
+-------- delete-------
+delete from customers where customerid=2;
+
+------ limit -----
+select * from customers limit 3 ;
+select * from customers limit 3 offset 3;-- ->return only 3 value but starts on record 4(offset 3)
+select * from customers where country='india' limit 2 offset 2;
+
+-- MIN & MAX ---- the min value should be enclosed in braces with alias name "firstadded" form customers table;
+select min(customerid) as firstadded from customers;
+select max(customerid) as lastadded from customers;
+
+----- count, avg, sum --- null values are not counted/ignored
+select count(customername) from customers where not country='usa';
+
+select avg(customerid) from customers where country='usa';
+select avg(customerid) from customers where not country='usa';
+
+select sum(customerid) from customers where country='india';
+
+
+
+
+
+select * from customers;
+select contactname from customers;
+select contactname, country from customers;
+select contactname, customerid from customers where country='india';
+select distinct contactname, country from customers where customerid=3;
+alter table orders add ordersent text;
+alter table orders drop ordersent;
+
+-- altering the column type is not working--> alter table orders alter column customerid long not null;
+-------------- ALAIS -------------
+select customername as name, contactname as nickname from customers;
+----------- single or double quatation is required if the alias name contains spaces------------
+select customername as 'customer name', contactname as "contact name" from customers;
+
+----- concat_ws command used to merge all the other user details under one column..
+----- if customer has st name, city name, state name, postal code in separate columns we can use it to combine all column
+----- which comes under one column as address.
+select customername, concat_ws('', contactname, country) as customerinfo from customers;
+
+select c.customername, o.orderid, c.country from customers as c, orders as o 
+where c.country='usa' and c.customerid=o.customerid;
+
+--------- JOIN --------
+select o.orderid, c.customername, c.country,c.contactname, o.orderdate from orders as o
+inner join customers as c on o.customerid=c.customerid 
+where country='uk';
+
+select o.orderid, c.customername, c.country,c.contactname, o.orderdate from orders as o
+inner join customers as c on o.customerid=c.customerid 
+where orderid=10308;
+
+select o.orderid, c.customername, c.country,c.contactname, o.orderdate from orders as o
+inner join customers as c on o.customerid=c.customerid
+where not country='uk';
+
+-- BOTH CROSS JOIN query performs the same opertion------
+select * from orders cross join customers;
+select * from orders cross join customers on orders.customerid=customers.customerid;
+
+------- to join three tables -------
+select o.orderid, c.customername, c.country 
+from ((orders as o 
+inner join customers as c on c.customerid=o.customerid)
+inner join shipping as s on s.customerid=o.customerid);
+
+------- JOIN WITH ORDERBY ------ 
+select o.orderid, c.customername, c.country
+from orders as o
+left join customers as c on c.customerid=o.customerid
+order by c.customername;
+
+select o.orderid, c.customername 
+from orders as o
+cross join customers as c;
+
+--  when we add where class to the cross join it will produce value like inner join ---------
+select o.orderid, c.customername
+from orders as o
+cross join customers as c where c.customerid=o.customerid;
+
+-- SELF JOIN ----- joining within the table
+/* SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City, B.Country
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.Country = B.Country 
+ORDER BY B.Country; */
+
+-- select a.customerid, 
+
+-- UNION ------
+select location from shipping
+union
+select country from customers;
+
+-- UNION ALL ---- The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL
+select location from shipping
+union all
+select country from customers;
+
+---- GROUP BY ----- it should always have aggregate function
+select count(customerid), contactname 
+from customers where country='india'
+group by contactname order by contactname asc;
+
+select count(customerid), contactname 
+from customers where country='india'
+group by contactname order by count(contactname);
+
+------ GROUP BY WITH HAVING------- 
+-- where is used to filter the rows, 
+-- having is used to filter the groupby
+-- order by should always come after GROUPBY -- it is used for sorting
+select count(customerid), country
+from customers group by country having count(customerid)>1;
+
+-- views-  we can set the complex query in views and with that result we can filter as we need
+create view joining
+as 
+select o.orderid, c.customername, c.country,c.contactname, o.orderdate from orders as o
+inner join customers as c on o.customerid=c.customerid 
+where country='uk';
+
+-- so if we run just the view alone it gives the inner join output
+select * from joining;
+select * from joining where customername='steve'; -- from view we can do filter
+-- to modify the view query use "create to replace view"
+create or replace view joining
+as
+select o.orderid, c.customername, c.country,c.contactname, o.orderdate from orders as o
+inner join customers as c on o.customerid=c.customerid 
+where country='india'; -- after editing the view query the view value will be changed
+
+select * from joining;
+-- to drop the view 
+drop view joining; -- now if we run the view query(select * from <view name>) - it throws error - doesnt exist
+
+-------- SUBQUERIES-----
+select * from customers;
+select * from customers
+where customerid=(select customerid from orders where orderdate='2024-01-26');
+
+
+
+
+
+
+
+
+----- GROUP BY WITH JOIN ----- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
